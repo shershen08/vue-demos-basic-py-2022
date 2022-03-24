@@ -1,9 +1,16 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
+    {{id}}
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
 
-    <h3>{{name}}</h3>
+    <!-- css class -->
+    <h3 data-test="cmp-title">{{name}}</h3>
+
+    <!-- <p v-capitalize>vasya</p>
+    <p v-capitalize>Vasya</p>
+    <p v-capitalize>john smith</p>
+    <p v-capitalize><img src="/.."> john smith</p> -->
 
     Loading: {{isDataLoaded}}
 
@@ -16,7 +23,8 @@
       <br>
       some text and content
       <br>
-          <button v-on:click="chageName">change name</button>
+
+    <button data-test="change-name-button" v-on:click="chageName">change name</button>
     <button @click="chageName">change name 2</button>
 
     <input v-model="name"/>
@@ -31,12 +39,18 @@
 
 <script>
 // @ is an alias to /src
-// import HelloWorld from '@/components/HelloWorld.vue';
+// import UserName from '@/components/UserName.vue';
 
 export default {
   name: 'HomeView',
+  props: ['id'],
   components: {
-    // HelloWorld,
+    // UserName,
+  },
+  computed: {
+    idPlusName() {
+      return this.id + this.name;
+    },
   },
   methods: {
     chageName() {
